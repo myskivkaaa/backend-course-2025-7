@@ -1,0 +1,20 @@
+[
+  {
+    "id": "83201926-a291-46dd-a989-539cd9e1d250",
+    "name": "Labtop",
+    "description": "Lenovo Thinkbook",
+    "photo_path": "1764696947712-87nq0g.jpg"
+  },
+  {
+    "id": "dbcdbc1a-f77d-458a-b366-71462c83d7f8",
+    "name": "Labtop",
+    "description": "Lenovo Thinkbook",
+    "photo_path": "1764751927856-so47t4.jpg"
+  },
+  {
+    "id": "bb65d8be-c65c-4fb1-9629-009e11d36421",
+    "name": "Оновлений ноутбук",
+    "description": "Опис змінено",
+    "photo_path": "1764753277783-pqf5rj.jpg"
+  }
+]
