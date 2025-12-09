@@ -2,7 +2,7 @@
 // Сервер інвентаризації (Inventory Service) – Лабораторна №7 (Docker + DB)
 // ==================================================
 
-// --- Імпорт необхідних модулів ---
+// --- Імпорт необхідних модулів --- нова зміна
 const fs = require("fs");
 const path = require("path");
 const express = require("express");

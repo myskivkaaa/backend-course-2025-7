@@ -1,6 +1,7 @@
+-- init-db/init.sql
 CREATE TABLE IF NOT EXISTS inventory (
-    id SERIAL PRIMARY KEY,
+    id VARCHAR(255) PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
-    quantity INTEGER NOT NULL,
-    photo_path VARCHAR(255) 
+    description TEXT,
+    photo_path VARCHAR(255)
 );
