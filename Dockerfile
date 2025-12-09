@@ -14,5 +14,6 @@ COPY . .
 
 EXPOSE 3000
 
-# Команда для запуску, яка має використовувати nodemon (переконайтеся, що ваш package.json має "dev" скрипт)
-CMD ["npm", "run", "dev"]
+# Команда для запуску, яка має використовувати nodemon                                  (переконайтеся, що ваш package.json має "dev" скрипт)
+#CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "debug"]
