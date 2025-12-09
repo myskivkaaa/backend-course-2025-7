@@ -1,4 +1,4 @@
-# compose.yml (Оновлено для відлагодження)
+# compose.yml (Оновлено для відлагодження та фіксу ECONNREFUSED)
 version: '3.8'
 
 services:
@@ -7,7 +7,7 @@ services:
     build: . # Використовує Dockerfile в поточній теці
     ports:
       - "3000:3000" # Порт сервера (для доступу з хоста)
-      - "9229:9229" # <--- ДОДАНО: Порт відлагоджувача Node.js
+      - "9229:9229" # <--- ПОРТ ВІДЛАГОДЖУВАЧА Node.js
     # Монтування для гарячого перезавантаження (nodemon)
     volumes:
       - .:/app
@@ -15,7 +15,8 @@ services:
     env_file:
       - .env # Змінні середовища для підключення до БД
     depends_on:
-      - db # Сервіс залежить від запуску БД
+      db:
+        condition: service_healthy # <--- ЗМІНА: Чекаємо, поки БД стане "здоровою"
 
   # 2. Database Service (PostgreSQL)
   db:
@@ -28,6 +29,13 @@ services:
       - ./init-db:/docker-entrypoint-initdb.d
       # Персистентне зберігання даних
       - db-data:/var/lib/postgresql/data 
+    # <--- ДОДАНО: Перевірка здоров'я БД (Healthcheck)
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s # Даємо БД час на ініціалізацію
 
 volumes:
   db-data: # Оголошення іменованого тому для зберігання даних
