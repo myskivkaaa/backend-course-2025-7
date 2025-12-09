@@ -9,7 +9,7 @@ const http = require("http");             // HTTP сервер
 const express = require("express");       // Express для створення API
 const { Command } = require("commander"); // Для командного рядка
 const multer = require("multer");         // Для завантаження файлів
-const { v4: uuidv4 } = require("uuid");   // Для генерації унікальних ID
+const uuidv4 = require("uuid").v4;  // Для генерації унікальних ID
 
 // --- Swagger документація ---
 const swaggerJsdoc = require("swagger-jsdoc");
