@@ -1,6 +1,6 @@
--- init-db/init.sql (Виправлений код для PostgreSQL)
 CREATE TABLE IF NOT EXISTS inventory (
-    id SERIAL PRIMARY KEY, -- Правильний синтаксис PostgreSQL
+    id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
-    quantity INTEGER NOT NULL
+    quantity INTEGER NOT NULL,
+    photo_path VARCHAR(255) 
 );
