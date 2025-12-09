@@ -1,0 +1,32 @@
+# compose.yml
+version: '3.8'
+
+services:
+  # 1. Node.js Backend Service
+  backend:
+    build: . # Використовує Dockerfile в поточній теці
+    ports:
+      - "3000:3000" # Прокидаємо порт для доступу з хоста
+    # Монтування для гарячого перезавантаження (nodemon)
+    volumes:
+      - .:/app
+      - /app/node_modules # Виключаємо node_modules з монтування
+    env_file:
+      - .env # Змінні середовища для підключення до БД
+    depends_on:
+      - db # Сервіс залежить від запуску БД
+
+  # 2. Database Service (PostgreSQL)
+  db:
+    image: postgres:14-alpine # Використовуємо офіційний образ PostgreSQL
+    restart: always
+    env_file:
+      - .env # Змінні середовища для конфігурації самої БД
+    volumes:
+      # Монтуємо скрипт ініціалізації БД
+      - ./init-db:/docker-entrypoint-initdb.d
+      # Персистентне зберігання даних (дані не зникнуть після зупинки контейнера)
+      - db-data:/var/lib/postgresql/data 
+
+volumes:
+  db-data: # Оголошення іменованого тому для зберігання даних
